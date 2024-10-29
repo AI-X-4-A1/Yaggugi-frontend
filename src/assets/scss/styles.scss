@@ -1,0 +1,85 @@
+// styles.scss
+
+$background: #ffffff;
+$mainTheme: #66CDAA;
+$pointTheme: #4A4A4A;
+$fontWhite: #ffffff;
+$fontBlack: #000000;
+
+$fontTitle: 'Black Han Sans', sans-serif;
+$fontContents: 'Nanum Gothic', sans-serif;
+
+@import "~bootstrap/scss/bootstrap";
+
+.layout-app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100dvh;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.layout-header {
+  height: 8%;
+  width: 100%;
+}
+
+.layout-body {
+  min-height: 84%;
+  width: 100%;
+  padding: 10px;
+}
+
+.layout-footer {
+  height: 8%;
+  width: 100%;
+}
+
+.header {
+  height: 100%;
+  background-color: $mainTheme;
+  font-weight: bold;
+  color: $fontWhite;
+  font-family: $fontTitle;
+  padding: 1rem;
+}
+
+.footer {
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 1rem;
+  background-color: $mainTheme;
+  padding: 1rem;
+}
+
+.footer-button {
+  background-color: $background;
+  border: none;
+  border-radius: 50%;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  &.active {
+      background-color: $pointTheme;
+  }
+
+  &:hover {
+    background-color: $pointTheme;
+  }
+}
+
+.icon {
+    color: $mainTheme;
+    font-size: 1.5rem;
+}
+
+.footer-button.active .icon {
+  color: $background;
+}
