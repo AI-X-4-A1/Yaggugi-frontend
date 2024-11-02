@@ -50,7 +50,14 @@ $fontContents: "Nanum Gothic", sans-serif;
   padding: 0.8rem;
 }
 
-.header .title {
+.header .logo {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+}
+
+.logo .title {
   display: flex;
   align-items: center;
   text-align: left;
@@ -63,6 +70,16 @@ $fontContents: "Nanum Gothic", sans-serif;
   &:hover {
     animation: flash 1.5s;
   }
+}
+
+.logo .location {
+  display: flex;
+  align-items: center;
+  color: $pointTheme;
+  font-family: $fontTitle;
+  font-weight: bold;
+  font-size: 21px;
+  margin-left: 10px;
 }
 
 .header .login {
