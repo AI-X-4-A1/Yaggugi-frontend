@@ -134,8 +134,28 @@ $fontContents: "Nanum Gothic", sans-serif;
   }
 }
 
+.footer-button-git {
+  background-color: $fontBlack;
+  border: none;
+  border-radius: 50%;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $pointTheme;
+  }
+}
+
 .icon {
   color: $mainTheme;
+  font-size: 1.5rem;
+}
+
+.icon-git {
+  color: $fontWhite;
   font-size: 1.5rem;
 }
 
