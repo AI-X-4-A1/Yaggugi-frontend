@@ -5,9 +5,12 @@ import Home from "./pages/home";
 import Suggestion from "./pages/suggestion";
 import Search from "./pages/search";
 import Planning from "./pages/planning";
+import Profile from "./pages/profile";
+import OAuth2RedirectHandler from "./oauth2/OAuth2RedirectHandler";
 
 import Header from './components/header';
 import Footer from './components/footer';
+
 
 function App() {
   return (
@@ -21,6 +24,8 @@ function App() {
         <div className="layout-body">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/oauth2/redirect" element={<OAuth2RedirectHandler />} />
             <Route path="/suggestion" element={<Suggestion />} />
             <Route path="/search" element={<Search />} />
             <Route path="/planning" element={<Planning />} />

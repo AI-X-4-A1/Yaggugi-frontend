@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
+import { GOOGLE_AUTH_URL } from '../constants';
 
 function Header() {
   const location = useLocation();
@@ -9,6 +10,9 @@ function Header() {
     "/suggestion": "I Suggest",
     "/search": "I Search",
     "/planning": "I Plan",
+  };
+  const handleGoogleLogin = () => {
+    window.location.href = GOOGLE_AUTH_URL;
   };
 
   const routeName = routeNames[location.pathname];
@@ -22,7 +26,7 @@ function Header() {
         <div className="location">{routeName}</div>
       </div>
 
-      <button className="login">로그인</button>
+      <button className="login" onClick={handleGoogleLogin} >로그인</button>
     </div>
   );
 }
