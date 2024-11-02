@@ -1,0 +1,90 @@
+@import "styles";
+
+.mascotImg {
+  border: 2px solid $mainTheme;
+  border-radius: 50%;
+  width: 45px;
+  height: auto;
+  padding: 5px;
+}
+
+.chat-context {
+  font-family: $fontContents;
+  font-size: 12px;
+  color: $fontWhite;
+  padding: 10px 15px;
+  border-radius: 15px;
+  max-width: 250px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  position: relative;
+}
+
+.bot-message::before
+
+.chat-context {
+  color: $fontWhite;
+  padding: 10px 15px;
+  border-radius: 15px;
+  max-width: 250px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.ms-2 {
+  font-family: $fontTitle;
+  font-size: 12px;
+  color: $pointTheme;
+}
+
+.chat-input {
+  display: flex;
+  flex-direction: row;
+  align-items: space-around;
+  border-radius: 8px;
+  padding: 2px;
+  margin-bottom: 10px;
+  width: 100%;
+  max-width: 500px;
+
+  .form-control {
+    font-family: $fontContents;
+    box-shadow: 0 4px 6px rgba(0,0,0, 0.2), 0 1px 3px rgba(0,0,0, 0.1);
+    font-size: 12px;
+    border: 1px solid $mainTheme;
+    flex-grow: 1;
+    width: 75% !important;
+    &:focus {
+      border: 1px solid $mainTheme;
+      box-shadow: 10px 10px 10px rgba($mainTheme, 0.3), 5px 5px 5px rgba($mainTheme, 0.2);
+    }
+
+    &::placeholder {
+      font-family: $fontContents;
+      color: rgba($color: #999, $alpha: 0.6);
+    }
+  }
+
+  .btn-primary {
+    font-family: $fontContents;
+    box-shadow: 0 4px 6px rgba(0,0,0, 0.2), 0 1px 3px rgba(0,0,0, 0.1);
+    font-size: 12px;
+    background-color: $mainTheme;
+    border: none;
+    margin-left: 10px;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.text-muted {
+  font-family: $fontTitle;
+  font-size: 12px;
+  font-weight: bold;
+  color: $pointTheme !important;
+  text-align: center;
+}
