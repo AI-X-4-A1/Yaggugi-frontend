@@ -5,7 +5,7 @@ import { Container, Row, Col, Form, Button, Spinner } from "react-bootstrap";
 function ChatApp() {
   const [userInput, setUserInput] = useState("");
   const [messages, setMessages] = useState([
-    { text: "안녕하세요! 질문해 주세요", sender: "bot" },
+    { text: "안녕하세요! 영양제에 대한 질문을 해주세요!", sender: "bot" },
   ]);
   const [loading, setLoading] = useState(false);
   const [audioSrc, setAudioSrc] = useState(null);
@@ -27,7 +27,7 @@ function ChatApp() {
 
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8010/chat/",
+        process.env.REACT_APP_LLM,
         new URLSearchParams({ text: userInput }).toString(),
         {
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -42,7 +42,7 @@ function ChatApp() {
       ]);
 
       const audioResponse = await axios.post(
-        "http://127.0.0.1:8011/synthesize",
+        process.env.REACT_APP_TTS,
         { text: botResponse },
         {
           headers: { "Content-Type": "application/json" },
@@ -89,6 +89,7 @@ function ChatApp() {
         height: "100%",
         display: "flex",
         flexDirection: "column",
+        padding: "0",
       }}
     >
       <div
@@ -97,8 +98,15 @@ function ChatApp() {
       >
         {messages.map((msg, index) => (
           <React.Fragment key={index}>
-            <Row className={`mb-2 ${msg.sender === "user" ? "justify-content-end" : ""}`}>
-              <Col xs="auto" className={msg.sender === "bot" ? "bot-message-container" : ""}>
+            <Row
+              className={`mb-2 ${
+                msg.sender === "user" ? "justify-content-end" : ""
+              }`}
+            >
+              <Col
+                xs="auto"
+                className={msg.sender === "bot" ? "bot-message-container" : ""}
+              >
                 {msg.sender === "bot" && (
                   <img
                     src="mascot.webp"
@@ -107,9 +115,12 @@ function ChatApp() {
                   />
                 )}
                 <div
-                  className={`chat-context ${msg.sender === "bot" ? "bot-message" : ""}`}
+                  className={`chat-context ${
+                    msg.sender === "bot" ? "bot-message" : ""
+                  }`}
                   style={{
-                    backgroundColor: msg.sender === "user" ? "#4A4A4A" : "#66CDAA",
+                    backgroundColor:
+                      msg.sender === "user" ? "#4A4A4A" : "#66CDAA",
                   }}
                 >
                   {msg.text}
@@ -123,7 +134,9 @@ function ChatApp() {
           <Row className="mb-2">
             <Col xs="auto">
               <Spinner animation="border" role="status" size="sm" />
-              <span className="ms-2">답변을 준비중이에요... 잠시만 기다려주세요...</span>
+              <span className="ms-2">
+                답변을 준비중이에요... 잠시만 기다려주세요...
+              </span>
             </Col>
           </Row>
         )}
