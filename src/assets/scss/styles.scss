@@ -30,7 +30,7 @@ $fontContents: "Nanum Gothic", sans-serif;
 .layout-body {
   min-height: 84%;
   width: 100%;
-  padding: 10px;
+  padding: 5px;
 }
 
 .layout-footer {
@@ -124,4 +124,20 @@ $fontContents: "Nanum Gothic", sans-serif;
 
 .footer-button.active .icon {
   color: $background;
+}
+
+// 스크롤바 커스텀
+::-webkit-scrollbar {
+  width: 4px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: $background;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $mainTheme;
+  border-radius: 10px;
 }
