@@ -39,10 +39,10 @@ const Profile = () => {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-        withCredentials: true, // credentials: 'include' 대신 사용
+        withCredentials: true,
       });
-      localStorage.removeItem(ACCESS_TOKEN); // 로컬 스토리지에서 토큰 제거
-      navigate("/"); // 로그아웃 후 로그인 페이지로 이동
+      localStorage.removeItem(ACCESS_TOKEN);
+      navigate("/");
     } catch (error) {
       console.error("로그아웃에 실패했습니다.", error);
     }
