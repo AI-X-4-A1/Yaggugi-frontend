@@ -82,6 +82,16 @@ function ChatApp() {
     }
   };
 
+  const formatResponseText = (text) => {
+    // 줄바꿈을 <br />로 변환하여 HTML로 안전하게 렌더링
+    return text.split("\n").map((line, index) => (
+      <span key={index}>
+        {line}
+        <br />
+      </span>
+    ));
+  };
+
   return (
     <Container
       style={{
@@ -123,7 +133,7 @@ function ChatApp() {
                       msg.sender === "user" ? "#4A4A4A" : "#66CDAA",
                   }}
                 >
-                  {msg.text}
+                  {formatResponseText(msg.text)}
                 </div>
               </Col>
             </Row>
