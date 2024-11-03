@@ -89,7 +89,7 @@ function ChatApp() {
         height: "100%",
         display: "flex",
         flexDirection: "column",
-        padding: "0",
+        padding: "5px",
       }}
     >
       <div

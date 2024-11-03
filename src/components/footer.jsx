@@ -11,7 +11,6 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 function Footer() {
   const location = useLocation();
 
-  // 현재 경로가 버튼의 경로와 일치하는지 확인하여 활성화 클래스 적용
   const isActive = (path) => (location.pathname === path ? " active" : "");
 
   return (
