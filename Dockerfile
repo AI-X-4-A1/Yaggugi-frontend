@@ -29,4 +29,4 @@ CMD ["serve", "-s", "/app/build", "-l", "3000"]
 
 # docker build -t yaggugi-front-app .
 
-# docker run -p 3000:3000 yaggugi-front-app
+# docker run -p 3000:3000 --name yaggugi-front-app yaggugi-front-app
