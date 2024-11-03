@@ -10,18 +10,16 @@ const Profile = () => {
     const fetchProfile = async () => {
       try {
         const token = localStorage.getItem(ACCESS_TOKEN);
-        const response = await fetch('http://localhost:8080/profile', {
-          method: 'GET',
+        const response = await axios.get('http://localhost:8080/profile', {
           headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
           },
-          credentials: 'include'
+          withCredentials: true // 쿠키를 포함하여 요청
         });
         console.log(response);
-        if (response.ok) {
-          const data = await response.json();
-          setUser(data.user.user); // 중첩된 user 객체에 접근
+        if (response.status === 200) {
+          setUser(response.data.user.user); // 중첩된 user 객체에 접근
         } else {
           navigate('/');
         }
@@ -37,12 +35,11 @@ const Profile = () => {
   const handleLogout = async () => {
     try {
       const token = localStorage.getItem(ACCESS_TOKEN);
-      await fetch('http://localhost:8080/logout', {
-        method: 'GET',
+      await axios.get('http://localhost:8080/logout', {
         headers: {
           'Authorization': `Bearer ${token}`
         },
-        credentials: 'include',
+        withCredentials: true, // credentials: 'include' 대신 사용
       });
       localStorage.removeItem(ACCESS_TOKEN); // 로컬 스토리지에서 토큰 제거
       navigate('/'); // 로그아웃 후 로그인 페이지로 이동
@@ -50,6 +47,7 @@ const Profile = () => {
       console.error('로그아웃에 실패했습니다.', error);
     }
   };
+  
 
   return (
     <div style={{ textAlign: 'center', marginTop: '50px' }}>
