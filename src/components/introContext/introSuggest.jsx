@@ -38,7 +38,17 @@ function IntroSuggest() {
               <li>
                 LLM(Large Language Model)
                 <ul>
-                  <li></li>
+                  <li>
+                    {" "}
+                    <a
+                      href="https://huggingface.co/LGAI-EXAONE/EXAONE-3.0-7.8B-Instruct"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ color: "#0073e6", textDecoration: "underline" }}
+                    >
+                      LGAI-EXAONE/EXAONE-3.0-7.8B-Instruct
+                    </a>
+                  </li>
                   <li>
                     사용자가 챗봇에 입력한 질문에 대해 상황에 맞는 영양제를
                     추천해 줍니다.
