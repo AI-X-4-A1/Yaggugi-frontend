@@ -28,9 +28,9 @@ function ChatApp() {
     try {
       const response = await axios.post(
         process.env.REACT_APP_LLM,
-        new URLSearchParams({ text: userInput }).toString(),
+        { prompt: userInput },
         {
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          headers: { "Content-Type": "application/json" },
         }
       );
 
