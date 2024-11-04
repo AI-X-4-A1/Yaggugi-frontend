@@ -13,6 +13,9 @@ function ChatApp() {
   const inputRef = useRef(null);
   const audioRef = useRef(null);
 
+  console.log(process.env.REACT_APP_LLM);
+  console.log(process.env.REACT_APP_TTS);
+
   const handleInputChange = (e) => {
     setUserInput(e.target.value);
   };
@@ -34,7 +37,9 @@ function ChatApp() {
         }
       );
 
-      const botResponse = response.data.result;
+      console.log(response);
+
+      const botResponse = response.data.response;
 
       setMessages((prevMessages) => [
         ...prevMessages,
@@ -83,14 +88,14 @@ function ChatApp() {
   };
 
   const formatResponseText = (text) => {
-    // 줄바꿈을 <br />로 변환하여 HTML로 안전하게 렌더링
+    if (!text) return null; // text가 undefined 또는 null이면 null 반환
     return text.split("\n").map((line, index) => (
       <span key={index}>
         {line}
         <br />
       </span>
     ));
-  };
+  };  
 
   return (
     <Container
