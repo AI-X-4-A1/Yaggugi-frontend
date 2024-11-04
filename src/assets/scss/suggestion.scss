@@ -11,11 +11,11 @@
 .chat-context {
   font-family: styles.$fontContents;
   font-size: 12px;
-  color: styles.$fontWhite;
-  padding: 10px 15px;
-  border-radius: 15px;
-  max-width: 250px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  color: styles.$fontWhite !important;
+  padding: 10px 15px !important;
+  border-radius: 15px !important;
+  max-width: 250px !important;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15) !important;
   position: relative;
 }
 

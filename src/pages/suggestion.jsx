@@ -28,9 +28,9 @@ function ChatApp() {
     try {
       const response = await axios.post(
         process.env.REACT_APP_LLM,
-        new URLSearchParams({ text: userInput }).toString(),
+        { prompt: userInput },
         {
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          headers: { "Content-Type": "application/json" },
         }
       );
 
@@ -82,6 +82,16 @@ function ChatApp() {
     }
   };
 
+  const formatResponseText = (text) => {
+    // 줄바꿈을 <br />로 변환하여 HTML로 안전하게 렌더링
+    return text.split("\n").map((line, index) => (
+      <span key={index}>
+        {line}
+        <br />
+      </span>
+    ));
+  };
+
   return (
     <Container
       style={{
@@ -89,7 +99,7 @@ function ChatApp() {
         height: "100%",
         display: "flex",
         flexDirection: "column",
-        padding: "0",
+        padding: "5px",
       }}
     >
       <div
@@ -123,7 +133,7 @@ function ChatApp() {
                       msg.sender === "user" ? "#4A4A4A" : "#66CDAA",
                   }}
                 >
-                  {msg.text}
+                  {formatResponseText(msg.text)}
                 </div>
               </Col>
             </Row>

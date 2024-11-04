@@ -1,0 +1,128 @@
+@use "styles" as styles;
+
+.main_container {
+  height: 100%;
+  width: auto;
+  position: relative;
+
+  .main-context {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+    width: auto;
+
+    .container {
+      width: 95%;
+      height: 95%;
+      border: 3px solid styles.$mainTheme;
+      border-radius: 12px;
+      background-color: styles.$background;
+      padding: 8px;
+      overflow-x: hidden;
+      overflow-y: auto;
+
+      .title {
+        font-size: 21px;
+        font-family: styles.$fontTitle;
+        font-weight: bold;
+        color: styles.$fontBlack;
+      }
+
+      .context {
+        font-size: 14px;
+        font-family: styles.$fontContents;
+        color: styles.$fontBlack;
+      }
+
+      ul {
+        list-style-type: disc;
+
+        ul {
+          list-style-type: circle;
+
+          ul {
+            list-style-type: square;
+          }
+        }
+      }
+
+      .badge {
+        display: flex;
+        flex-direction: column;
+        justify-content: left;
+        align-items: flex-start;
+        gap: 5px;
+        padding: 5px;
+      }
+    }
+  }
+
+  .main-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+    width: auto;
+
+    .intro-btn {
+      flex: 1;
+      width: 100%;
+      height: 100%;
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+
+      .btn-style {
+        min-width: 160px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        background-color: styles.$mainTheme;
+        border: 2px solid styles.$fontWhite;
+        border-radius: 12px;
+        color: styles.$fontWhite;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+        font-family: styles.$fontTitle;
+        font-weight: bold;
+        font-size: 16px;
+        padding: 3px;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.1s, box-shadow 0.1s;
+
+        &:hover {
+          background-color: styles.$pointTheme;
+        }
+
+        &:active {
+          transform: scale(0.95);
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        &.active {
+          background-color: styles.$pointTheme;
+          color: styles.$background;
+          border-color: styles.$background;
+        }
+      }
+    }
+
+    .mascot-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 1;
+
+      .main-mascot {
+        width: 200px;
+        height: auto;
+      }
+    }
+  }
+}
