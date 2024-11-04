@@ -29,6 +29,7 @@ function Header() {
         },
       });
       localStorage.removeItem(ACCESS_TOKEN); // 로컬 스토리지에서 토큰 제거
+      localStorage.removeItem("userId"); // 로�� 스토리지에서 userId 제거
       setIsLoggedIn(false); // 로그인 상태 업데이트
       navigate('/'); // 로그아웃 후 홈 페이지로 이동
     } catch (error) {
