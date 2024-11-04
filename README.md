@@ -14,7 +14,7 @@
 
 ## 🩺 **Architecture**
 
-![Architecture](https://github.com/user-attachments/assets/3d833756-c761-4cbd-9500-84ad59113859)
+![yaggugi-architecture](https://github.com/user-attachments/assets/4afaddf1-3d87-41c4-8ce9-e05c0f5305bb)
 
 ## 🩺 **Feature**
 + 영양제 조합 및 추천
