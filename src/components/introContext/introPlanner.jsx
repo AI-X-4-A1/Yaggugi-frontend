@@ -9,16 +9,19 @@ function IntroPlanner() {
 
   return (
     <div>
-      <div className="title">검색 소개</div>
+      <div className="title">플래너 소개</div>
       <div className="context">
         <ul>
           <li>
-            영양제 추천 기능은 챗봇을 통해 영양제에 대한 다양한 정보를 쉽게 얻을
-            수 있는 기능입니다.
+            오늘 챙겨야 할 영양제를 모두 섭취했는지 궁금하신가요? 이제 간단한
+            음성 명령으로 쉽게 확인해보세요. 음성만으로도 섭취 여부를 체크하고,
+            기록을 통해 건강 관리가 더욱 편리해집니다.
           </li>
           <li>
-            챗봇과 대화하며 궁금한 내용을 질문하면, 필요한 정보를 텍스트로
-            제공받고, 음성으로 답변을 들을 수도 있어 편리합니다.
+            건강 관리를 더욱 간편하게! RECORD 버튼을 눌러 섭취 완료를 말로
+            남기고, STOP 버튼으로 음성을 마무리하세요. 자동으로 텍스트 변환 후
+            이모티콘이 캘린더에 기록되어 매일의 섭취 상황을 생생하게 확인할 수
+            있습니다.
           </li>
         </ul>
       </div>
@@ -36,39 +39,41 @@ function IntroPlanner() {
           <div className="context">
             <ul>
               <li>
-                LLM(Large Language Model)
-                <ul>
-                  <li></li>
-                  <li>
-                    사용자가 챗봇에 입력한 질문에 대해 상황에 맞는 영양제를
-                    추천해 줍니다.
-                  </li>
-                  <li>
-                    챗봇과의 대화를 통해 개인에게 맞는 맞춤형 영양제 정보를
-                    손쉽게 얻을 수 있습니다.
-                  </li>
-                </ul>
-              </li>
-              <li>
-                TTS(Text-to-Speech)
+                ARS (Automatic Speech Recognition)
                 <ul>
                   <li>
                     {" "}
                     <a
-                      href="https://pypi.org/project/gTTS/"
+                      href="https://huggingface.co/openai/whisper-large"
                       target="_blank"
                       rel="noopener noreferrer"
                       style={{ color: "#0073e6", textDecoration: "underline" }}
                     >
-                      gTTS - Google Text-to-Speech
+                      openai / whisper-large
                     </a>
                   </li>
                   <li>
-                    기술을 통해 추천된 영양제 정보를 음성으로 들을 수 있습니다.
+                    사용자의 음성 명령을 인식하여 편리하게 챗봇과 소통할 수 있는
+                    기능을 제공합니다.
                   </li>
                   <li>
-                    이를 통해 사용자는 시각적 정보뿐만 아니라, 음성으로도 답변을
-                    편리하게 확인할 수 있습니다.
+                    음성으로 질문을 입력하면, 챗봇이 상황에 맞는 최적의 영양제를
+                    추천하여 건강 관리가 더욱 쉬워집니다.
+                  </li>
+                  <li>
+                    맞춤형 영양제 정보가 필요한가요? 챗봇과의 자연스러운 대화를
+                    통해 나에게 꼭 맞는 영양제 정보를 손쉽게 받아보세요.
+                  </li>
+                </ul>
+              </li>
+              <li>
+                LLM (Large Language Model)
+                <ul>
+                  <li>llama3-8b-8192</li>
+                  <li>
+                    감정 분석 기능을 활용하여 사용자의 말 속에 담긴 감정을
+                    파악하고, 그에 맞는 이모지를 선택해 캘린더에 자동으로
+                    기록합니다.
                   </li>
                 </ul>
               </li>
