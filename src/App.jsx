@@ -7,7 +7,6 @@ import Home from "./pages/home";
 import Suggestion from "./pages/suggestion";
 import Search from "./pages/search";
 import Planning from "./pages/planning";
-import Profile from "./pages/profile";
 import OAuth2RedirectHandler from "./oauth2/OAuth2RedirectHandler";
 
 import Header from './components/header';
@@ -23,7 +22,6 @@ function App() {
   };
 
   useEffect(() => {
-    // 이 코드에서 Profile 컴포넌트에 updateUserId 함수를 props로 전달하여 userId 상태가 변경될 때 실시간으로 반영됩니다.
     const handleStorageChange = () => {
       setUserId(localStorage.getItem("userId"));
     };
@@ -38,30 +36,19 @@ function App() {
     <Router>
       <div className="App layout-app">
         <div className="layout-header">
-          <Header />
+          <Header userId={userId} />
         </div>
         
         <div className="layout-body">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/profile" element={<RequireAuth><Profile updateUserId={updateUserId} /></RequireAuth>} />
-            <Route path="/oauth2/redirect" element={<OAuth2RedirectHandler />} />
-            <Route 
-              path="/suggestion" 
-              element={
-                userId ? (
-                  <Navigate to={`/suggestion/${userId}`} replace />
-                ) : (
-                  <Navigate to="/" replace />
-                )
-              }
-            />
-            <Route 
-              path="/suggestion/:userId" 
-              element={<RequireAuth><Suggestion /></RequireAuth>} 
-            />
-            <Route path="/search" element={<RequireAuth><Search /></RequireAuth>} />
-            <Route path="/planning" element={<RequireAuth><Planning /></RequireAuth>} />
+            <Route path="/oauth2/redirect" element={<OAuth2RedirectHandler updateUserId={updateUserId} />} />
+            <Route path="/suggestion" element={userId ? (<Navigate to={`/suggestion/${userId}`} replace />) : (<Navigate to="/" replace />)}/>
+            <Route path="/suggestion/:userId" element={<RequireAuth><Suggestion /></RequireAuth>} />
+            <Route path="/search" element={userId ? (<Navigate to={`/search/${userId}`} replace />) : (<Navigate to="/" replace />)}/>
+            <Route path="/search/:userId" element={<RequireAuth><Search /></RequireAuth>} />
+            <Route path="/planning" element={userId ? (<Navigate to={`/planning/${userId}`} replace />) : (<Navigate to="/" replace />)}/>
+            <Route path="/planning/:userId" element={<RequireAuth><Planning /></RequireAuth>} />
           </Routes>
         </div>
         
