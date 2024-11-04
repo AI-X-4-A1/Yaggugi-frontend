@@ -1,3 +1,13 @@
+/* App 전체를 화면 가운데에 정렬 */
+.app-container {
+  display: fixed;
+  justify-content: center; /* 가로 중앙 정렬 */
+  align-items: center; /* 세로 중앙 정렬 */
+  height: 50vh; /* 화면 높이를 100%로 설정 */
+  text-align: center; /* 텍스트와 내부 요소들 중앙 정렬 */
+  flex-direction: column; /* 요소들을 세로로 정렬 */
+}
+
 html, .button, body, #root {
   align-items:center;
   justify-content: center;
@@ -15,17 +25,53 @@ html, .button, body, #root {
 }
 
 .button {
-  margin: 8px;
-  padding: 15px 30px;
-  font-size: 16px;
-  cursor: pointer;
-  border: none;
-  background-color: #007AFF;
-  color: white;
-  border-radius: 30px;
-  transition: background-color 0.3s;
+  background-color: #007AFF; /* 녹색 배경 */
+  border: none; /* 테두리 없애기 */
+  color: white; /* 글자 색상 */
+  padding: 15px 32px; /* 패딩 */
+  text-align: center; /* 텍스트 중앙 정렬 */
+  text-decoration: none; /* 텍스트 밑줄 없애기 */
+  display: inline-block; /* 인라인 블록으로 설정 */
+  font-size: 12px; /* 글자 크기 */
+  margin: 4px 2px; /* 여백 */
+  cursor: pointer; /* 커서 모양 변경 */
+  border-radius: 30px; /* 둥근 모서리 */
+  transition: background-color 0.3s; /* 배경색 변화 애니메이션 */
 }
 
 .button:hover {
-  background-color: #007AFF;
+  background-color: #007AFF; /* 호버 시 배경색 변화 */
 }
+
+.button:disabled {
+  background-color: #ccc; /* 비활성화된 버튼 색상 */
+  cursor: not-allowed; /* 비활성화 시 커서 모양 변경 */
+}
+
+
+
+
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border-left-color: #09f;
+  animation: spin 1s ease infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
