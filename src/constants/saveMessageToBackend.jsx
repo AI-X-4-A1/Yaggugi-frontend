@@ -8,7 +8,7 @@ const saveMessageToBackend = async (message, sender) => {
     const userId = localStorage.getItem("userId");
 
     await axios.post(
-      `http://localhost:8080/chat/saveMessage`,
+      `http://www.leafresher.shop:8080/chat/saveMessage`,
       { sender, text: message, userId }, // userId 추가
       {
         headers: { Authorization: `Bearer ${accessToken}` },
