@@ -123,8 +123,8 @@ function ChatApp() {
                 className={msg.sender === "bot" ? "bot-message-container" : ""}
               >
                 {msg.sender === "bot" && (
-                  <img
-                    src="mascot.webp"
+                    <img
+                    src="/mascot.webp"
                     alt="Mascot"
                     className="mascotImg mb-2"
                   />

@@ -11,16 +11,23 @@ const Profile = () => {
     const fetchProfile = async () => {
       try {
         const token = localStorage.getItem(ACCESS_TOKEN);
-        const response = await axios.get(process.env.REACT_APP_LOGIN, {
+        const response = await axios.get('http://localhost:8080/profile', {
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
-          withCredentials: true, // 쿠키를 포함하여 요청
+          withCredentials: true,
         });
+
         console.log(response);
         if (response.status === 200) {
-          setUser(response.data.user.user); // 중첩된 user 객체에 접근
+          const profileData = response.data.user.user;
+          setUser(profileData);
+
+          // userId를 로컬 스토리지에 저장
+          if (profileData && profileData.id) {
+            localStorage.setItem("userId", profileData.id);
+          }
         } else {
           navigate("/");
         }
@@ -32,38 +39,19 @@ const Profile = () => {
     fetchProfile();
   }, [navigate]);
 
-  const handleLogout = async () => {
-    try {
-      const token = localStorage.getItem(ACCESS_TOKEN);
-      await axios.get(process.env.REACT_APP_LOGOUT, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        withCredentials: true,
-      });
-      localStorage.removeItem(ACCESS_TOKEN);
-      navigate("/");
-    } catch (error) {
-      console.error("로그아웃에 실패했습니다.", error);
-    }
-  };
-
   return (
     <div style={{ textAlign: "center", marginTop: "50px" }}>
       {user ? (
         <>
           <h2>환영합니다, {user.displayName}님!</h2>
-          {user.photos && user.photos[0] && (
+          {user.photo && (
             <img
-              src={user.photos[0].value}
+              src={user.photo}
               alt="Profile"
               style={{ borderRadius: "50%", width: "150px", height: "150px" }}
             />
           )}
-          {user.emails && user.emails[0] && (
-            <p>이메일: {user.emails[0].value}</p>
-          )}
-          <button onClick={handleLogout}>로그아웃</button>
+          <p>이메일: {user.email}</p>
         </>
       ) : (
         <p>프로필 정보를 가져오는 중...</p>
