@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import { Container, Row, Col, Form, Button, Spinner } from "react-bootstrap";
+import saveMessageToBackend from "../constants/saveMessageToBackend"; // 메시지 저장 함수
+import getUserMessages from "../constants/getUserMessages";
 
 function ChatApp() {
   const [userInput, setUserInput] = useState("");
@@ -13,8 +15,20 @@ function ChatApp() {
   const inputRef = useRef(null);
   const audioRef = useRef(null);
 
-  console.log(process.env.REACT_APP_LLM);
-  console.log(process.env.REACT_APP_TTS);
+  // 로그인 후 이전 메시지 불러오기
+  useEffect(() => {
+    const fetchUserMessages = async () => {
+      const userMessages = await getUserMessages();
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        ...userMessages.map((msg) => ({
+          text: msg.text,
+          sender: msg.sender,
+        })),
+      ]);
+    };
+    fetchUserMessages();
+  }, []);
 
   const handleInputChange = (e) => {
     setUserInput(e.target.value);
@@ -23,29 +37,31 @@ function ChatApp() {
   const handleSend = async () => {
     if (userInput.trim() === "") return;
 
-    setMessages([...messages, { text: userInput, sender: "user" }]);
+    const newUserMessage = { text: userInput, sender: "user" };
+    setMessages([...messages, newUserMessage]);
     setUserInput("");
     setLoading(true);
     inputRef.current.focus();
 
+    // 유저 메시지 백엔드에 저장
+    await saveMessageToBackend(userInput, "user");
+
     try {
+      // 챗봇 서버에 메시지 전송 및 응답 수신
       const response = await axios.post(
         process.env.REACT_APP_LLM,
         { prompt: userInput },
-        {
-          headers: { "Content-Type": "application/json" },
-        }
+        { headers: { "Content-Type": "application/json" } }
       );
-
-      console.log(response);
-
       const botResponse = response.data.response;
+      const newBotMessage = { text: botResponse, sender: "bot" };
 
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        { text: botResponse, sender: "bot" },
-      ]);
+      setMessages((prevMessages) => [...prevMessages, newBotMessage]);
 
+      // 챗봇 응답 백엔드에 저장
+      await saveMessageToBackend(botResponse, "bot");
+
+      // TTS 요청 처리
       const audioResponse = await axios.post(
         process.env.REACT_APP_TTS,
         { text: botResponse },
@@ -56,8 +72,7 @@ function ChatApp() {
       );
 
       const audioBlob = new Blob([audioResponse.data], { type: "audio/mpeg" });
-      const audioUrl = URL.createObjectURL(audioBlob);
-      setAudioSrc(audioUrl);
+      setAudioSrc(URL.createObjectURL(audioBlob));
     } catch (error) {
       console.error("Error fetching response from server:", error);
       setMessages((prevMessages) => [
@@ -88,14 +103,14 @@ function ChatApp() {
   };
 
   const formatResponseText = (text) => {
-    if (!text) return null; // text가 undefined 또는 null이면 null 반환
+    if (!text) return null;
     return text.split("\n").map((line, index) => (
       <span key={index}>
         {line}
         <br />
       </span>
     ));
-  };  
+  };
 
   return (
     <Container
@@ -123,7 +138,7 @@ function ChatApp() {
                 className={msg.sender === "bot" ? "bot-message-container" : ""}
               >
                 {msg.sender === "bot" && (
-                    <img
+                  <img
                     src="/mascot.webp"
                     alt="Mascot"
                     className="mascotImg mb-2"
