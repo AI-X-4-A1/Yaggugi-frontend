@@ -3,7 +3,7 @@ import axios from 'axios';
 const getUserMessages = async () => {
   try {
     const accessToken = localStorage.getItem('accessToken');
-    const response = await axios.get('http://localhost:8080/chat/getUserMessages', {
+    const response = await axios.get('http://www.leafresher.shop:8080/chat/getUserMessages', {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },

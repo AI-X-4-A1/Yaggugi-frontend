@@ -22,7 +22,7 @@ function Header() {
   const handleLogout = async () => {
     try {
       const token = localStorage.getItem(ACCESS_TOKEN);
-      await fetch('http://localhost:8080/logout', {
+      await fetch('http://www.leafresher.shop:8080/logout', {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}` // 수정된 부분
