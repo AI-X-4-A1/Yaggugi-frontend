@@ -1,14 +1,13 @@
+// src/pages/profile.jsx
+
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ACCESS_TOKEN } from "../constants";
 import axios from "axios";
-import { useDispatch } from "react-redux";
-import { setUserId } from "../store";
 
-const Profile = () => {
+const Profile = ({ updateUserId }) => {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -22,13 +21,14 @@ const Profile = () => {
           withCredentials: true,
         });
 
+        console.log(response);
         if (response.status === 200) {
           const profileData = response.data.user.user;
           setUser(profileData);
 
-          // userId를 Redux 상태와 localStorage에 저장
+          // userId를 로컬 스토리지와 상태에 저장
           if (profileData && profileData.id) {
-            dispatch(setUserId(profileData.id));
+            updateUserId(profileData.id);
           }
         } else {
           navigate("/");
@@ -39,7 +39,7 @@ const Profile = () => {
       }
     };
     fetchProfile();
-  }, [navigate, dispatch]);
+  }, [navigate, updateUserId]);
 
   return (
     <div style={{ textAlign: "center", marginTop: "50px" }}>
