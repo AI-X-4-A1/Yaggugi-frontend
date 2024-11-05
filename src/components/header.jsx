@@ -37,14 +37,13 @@ function Header() {
     }
   };
 
-  const routeNames = {
-    "/": "I Home",
-    "/suggestion": "I Suggest",
-    "/search": "I Search",
-    "/planning": "I Plan",
-  };
+  const localPath = localStorage.getItem("localPath");
 
-  const routeName = routeNames[location.pathname];
+  const parsedPath = (localPath === "/") ? "I 메인" :
+                   (localPath === "/suggestion") ? "I s추천" :
+                   (localPath === "/search") ? "I 검색" :
+                   (localPath === "/planning") ? "I 플래너" :
+                   "";
 
   return (
     <div className="header">
@@ -52,7 +51,7 @@ function Header() {
         <Link to="/" className="title">
           약국이
         </Link>
-        <div className="location">{routeName}</div>
+        <div className="location">{parsedPath}</div>
       </div>
 
       {isLoggedIn ? (
